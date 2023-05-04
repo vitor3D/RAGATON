@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href=".//scr/logo/LogoSemFundo.png" type="image/png">
+    <title>Cadastro Ligas</title>
+    <link rel="stylesheet" href=".//scr/style.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+</head>
+<body>
+    
+    <div class="navbar">
+        <!-- logo -->
+        <img src=".//scr/logo/LogocinzaGif.gif" alt="Logo" class="logo">
+        <!-- links -->
+
+        <!-- botão de login e cadastro -->
+        <div class="btn-group">
+          <a href="#" >Vôlei</a>
+          <a href="#" >Futsal</a>
+          <a href="#" >Atletismo</a>
+          <a href="#" id="ping">Ping Pong</a>
+        </div>
+      </div>
+
+    <div class="form">
+        <h3>Criar Time</h3>     
+    <label for="nome-time"><h4>Nome do Time:</h4></label>
+    <input type="text" id="nome-time" /><br>
+    <label for="imagem-time"><h4>Imagem do Time:</h4></label>
+    <input type="file" id="imagem-time" /><br>
+    <input type="submit" name="acao" value="Criar Time" onclick="criarTime()">
+    <br><br>
+
+    <h1>Adicionar Alunos</h1>
+    <label for="nome-aluno">Nome do Aluno:</label>
+    <input type="text" id="nome-aluno" /><br>
+    <label for="imagem-aluno">Imagem do Aluno:</label>
+    <input type="file" id="imagem-aluno" /><br>
+    <label for="time">Time:</label>
+    <select id="time"></select><br>
+
+    <input type="submit" name="acao" value="Adicionar Aluno" onclick="adicionarAluno()">
+        <br><br><br>
+    
+    <h1></h1>
+    <ul id="lista-times"></ul>
+    <br><br>
+</div> 
+        
+      <script>
+       // Cria objetos para armazenar os times e alunos
+let times = {};
+let alunos = {};
+
+// Função para criar um time
+function criarTime() {
+  const nomeTime = document.getElementById("nome-time").value;
+  const imagemTime = document.getElementById("imagem-time").files[0];
+  if (!nomeTime) {
+    alert("Por favor, insira um nome para o time.");
+    return;
+  }
+  if (!imagemTime) {
+    alert("Por favor, selecione uma imagem para o time.");
+    return;
+  }
+  const urlImagemTime = URL.createObjectURL(imagemTime);
+  times[nomeTime] = { imagem: urlImagemTime, alunos: [] };
+  atualizarListaTimes();
+}
+
+// Função para adicionar um aluno a um time existente
+function adicionarAluno() {
+  const nomeAluno = document.getElementById("nome-aluno").value;
+  const imagemAluno = document.getElementById("imagem-aluno").files[0];
+  const time = document.getElementById("time").value;
+  if (!nomeAluno) {
+    alert("Por favor, insira um nome para o aluno.");
+    return;
+  }
+  if (!time) {
+    alert("Por favor, selecione um time.");
+    return;
+  }
+  if (!imagemAluno) {
+    alert("Por favor, selecione uma imagem para o aluno.");
+    return;
+  }
+  const urlImagemAluno = URL.createObjectURL(imagemAluno);
+  alunos[nomeAluno] = { imagem: urlImagemAluno, time: time };
+  times[time].alunos.push(nomeAluno);
+  atualizarListaTimes();
+  atualizarListaAlunos();
+}
+function removerAluno(nomeAluno) {
+  const aluno = alunos[nomeAluno];
+  const time = times[aluno.time];
+
+  // Remove o aluno da lista de alunos do time
+  const index = time.alunos.indexOf(nomeAluno);
+  if (index !== -1) {
+    time.alunos.splice(index, 1);
+  }
+
+  // Remove o aluno da lista de alunos geral
+  delete alunos[nomeAluno];
+
+  // Atualiza a lista de times e alunos
+  atualizarListaTimes();
+}
+
+// Função para atualizar a lista de times e seus respectivos alunos
+function atualizarListaTimes() {
+const listaTimes = document.getElementById("lista-times");
+listaTimes.innerHTML = "";
+for (const [nomeTime, time] of Object.entries(times)) {
+  const listItem = document.createElement("ul");
+  
+  listaTimes.appendChild(listItem);
+
+  const listaAlunos = document.createElement("li");
+  for (const nomeAluno of time.alunos) {
+    const aluno = alunos[nomeAluno];
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `<img id="alunoImg" src="${aluno.imagem}" width="50" height="50" color="black"><h6><span>${nomeAluno}</span></h6><b>Time:</b><span>${nomeTime}</span><button class="remove" onclick="removerAluno('${nomeAluno}')"><ion-icon name="close-circle-outline"></ion-icon></button>`;
+    listaAlunos.appendChild(listItem);
+  }
+  listItem.appendChild(listaAlunos);
+}
+const selectTime = document.getElementById("time");
+selectTime.innerHTML = "";
+for (const nomeTime of Object.keys(times)) {
+  const option = document.createElement("option");
+  option.value = nomeTime;
+  option.innerText = nomeTime;
+  selectTime.appendChild(option);
+}
+
+}
+
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
