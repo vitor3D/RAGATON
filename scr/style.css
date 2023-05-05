@@ -43,6 +43,7 @@
   body{
     background-color: var(--primaryColor);
     color: var(--textColor);
+    overflow-x: hidden; /* esconde o scroll horizontal */
   }
 
   .navbar {
@@ -539,4 +540,180 @@ h6{
 }
 html {
   scroll-behavior: smooth;
+}
+#volei{
+  color: var(--corForte);
+  font-size: 18px;
+}
+ .parallax {
+        height: 800px; /* altura do elemento */
+        background-image: url('.//img/volei.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1;
+        filter: blur(5px);
+}
+
+      @media screen and (max-width: 768px) {
+  .parallax {
+    height: 500px;
+  }
+}
+.parallaxx {
+  height: 800px; /* altura do elemento */
+  background-image: url('.//img/futsal.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  filter: blur(5px);
+}
+
+@media screen and (max-width: 768px) {
+.parallax {
+height: 500px;
+}
+}
+   .cardV {
+      width: 500px;
+      height: 450px;
+      margin: 0 auto;
+      text-align: initial;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      margin-top: 20px;
+      margin: 0 auto;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .cardV h3 {
+      padding: 3px;
+      font-size: 24px;
+      color: #333;
+      float: inherit;
+      text-align: center;
+    }
+    
+    .cardV img {
+      width: 400px;
+      float: left;
+      object-fit: cover;
+      margin: 0 auto;
+      margin-top: 20px;
+      
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+#add{
+  color: #333;
+  font-size: 80px;
+}
+.add{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 130px;
+  height: 120px;
+  text-align: center;
+  font-size: 10px;
+      background-color: #ffffffa4;
+      color: #333;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+@media only screen and (min-width: 601px) {
+.cardV {
+      width: 800px;
+      height: 680px;
+      margin: 0 auto;
+      text-align: initial;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      margin-top: 20px;
+      margin: 0 auto;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .cardV h3 {
+      padding: 3px;
+      font-size: 24px;
+      color: #333;
+      float: inherit;
+      text-align: center;
+    }
+    
+    .cardV img {
+      width: 700px;
+      float: left;
+      object-fit: cover;
+      margin-left: 10%;
+      
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+}
+@media only screen and (max-width: 600px) {
+.cardV {
+      width: 300px;
+      height: 400px;
+      margin: 0 auto;
+      text-align: initial;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      margin-top: 20px;
+      margin: 0 auto;
+      margin-top: 20px;
+      text-align: center;
+    }
+    #primeiro{
+      height: 300px;
+    }
+    .cardV img {
+      width: 250px;
+      float: left;
+      object-fit: cover;
+      margin-left: 10%;
+      
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+    .cardV h3 {
+      padding: 3px;
+      font-size: 20px;
+      color: #333;
+      float: inherit;
+      text-align: center;
+    }
+}
+#primeiroF{
+  width:650px;
+  height: 600px;
+  text-align: center;
+}
+#fut{
+  width:650px;
+  height: 600px;
+}
+@media only screen and (max-width: 600px) {
+  #primeiroF{
+    width:250px;
+    height: 300px;
+    text-align: center;
+  }
+  #fut{
+    width:250px;
+    height: 300px;
+  }
 }
